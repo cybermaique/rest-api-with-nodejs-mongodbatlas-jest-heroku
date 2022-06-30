@@ -24,6 +24,15 @@ class ProdutosRepository {
 
     this.produtos.push(produto);
   }
+
+  obterTodos(): Produtoo[] {
+    return this.produtos;
+  }
+
+  obterPorNome(nome: string): Produtoo {
+    const produto = this.produtos.find((produto) => produto.nome === nome);
+    return produto;
+  }
 }
 
 export { ProdutosRepository };
