@@ -1,12 +1,10 @@
 import express from "express";
+import { produtosRoutes } from "./routes/produtos.routes";
 
 const app = express();
 
-app.get(
-  "/",
-  (request,
-  response) => {
-    return response.json({ message: "Testando 123!"});
-  });
+app.use(express.json());
 
-app.listen(5000);
+app.use(produtosRoutes);
+
+app.listen(5000, () => console.log("Server running on port 5000"));
