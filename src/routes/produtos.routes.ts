@@ -1,24 +1,18 @@
 import { Router } from "express";
 import { Produtoo } from "../model/Produtoo";
+import { ProdutosRepository } from "../repositories/ProdutosRepository";
 
 const produtosRoutes = Router();
+const produtosRepository = new ProdutosRepository();
 
 const produtos: Produtoo[] = [];
 
 produtosRoutes.post("/produtos", (request, response) => {
   const { nome, descricao, preco } = request.body;
 
-  const produto: Produtoo = {
-    id: "10",
-    create_at: new Date(),
-    descricao: descricao,
-    nome: nome,
-    preco: preco,
-  };
+  produtosRepository.salvar({ nome, descricao, preco });
 
-  produtos.push(produto);
-
-  return response.status(201).json({ produto });
+  return response.status(201).send();
 });
 
 export { produtosRoutes };
