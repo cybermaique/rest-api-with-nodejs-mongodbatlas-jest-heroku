@@ -13,13 +13,12 @@ produtosRoutes.post("/produtos", (request, response) => {
     create_at: new Date(),
     descricao: descricao,
     nome: nome,
-    preco: preco
-    
-  }
-  
+    preco: preco,
+  };
+
   produtos.push(produto);
 
-  return response.status(201).send();
+  return response.status(201).json({ produto });
 });
 
 export { produtosRoutes };
