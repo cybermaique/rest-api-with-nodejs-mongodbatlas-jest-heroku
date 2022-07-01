@@ -1,9 +1,9 @@
 # Objetivo
-Construir uma API Rest completa utilizando tecnologias abaixo e seguindo os padrões de Clean Code, Arquitetura
+Construir uma API Rest completa utilizando as tecnologias abaixo e seguindo os padrões do Clean Code.
 
 # Tecnologias
-- NodeJS
+- NodeJS (framework base)
 - MongoDBAtlas (DB)
-- Jest (testes)
+- Jest (testes code)
 - Heroku (deploy)
 - Insomnia (testes HTTP)
