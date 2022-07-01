@@ -1,30 +1,23 @@
 import { Router } from "express";
-import { Produtoo } from "../model/Produtoo";
 import { ProdutosRepository } from "../repositories/ProdutosRepository";
+import { ProdutosService } from "../services/ProdutosService";
 
 const produtosRoutes = Router();
 const produtosRepository = new ProdutosRepository();
 
-const produtos: Produtoo[] = [];
-
 produtosRoutes.post("/produtos", (request, response) => {
   const { nome, descricao, preco } = request.body;
 
-  const produtoExiste = produtosRepository.obterPorNome(nome);
+  const produtosService = new ProdutosService(produtosRepository);
 
-    if (produtoExiste) {
-        response.status(400).json({
-            error: "O produto já existe!"
-        });
-    } 
-
-  produtosRepository.salvar({ nome, descricao, preco });
+  produtosService.salvarProduto({ nome, descricao, preco });
 
   return response.status(201).send();
 });
 
 produtosRoutes.get("/produtos", (request, response) => {
-  const listaProdutos = produtosRepository.obterTodos();
+  const produtosService = new ProdutosService(produtosRepository);
+  const listaProdutos = produtosService.obterTodos();
 
   return response.json(listaProdutos);
 });
