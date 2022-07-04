@@ -1,12 +1,7 @@
 import { Produtoo } from "../model/Produtoo";
+import { IProdutoRepository, ISalvarProdutoDTO } from "./IProdutoRepository";
 
-interface ISalvarProdutoDTO {
-  nome: string;
-  descricao: string;
-  preco: number;
-}
-
-class ProdutosRepository {
+class ProdutosRepository implements IProdutoRepository{
   private produtos: Produtoo[];
 
   constructor() {

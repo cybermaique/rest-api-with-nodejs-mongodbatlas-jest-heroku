@@ -1,5 +1,5 @@
 import { Produtoo } from "../model/Produtoo";
-import { ProdutosRepository } from "../repositories/ProdutosRepository";
+import { IProdutoRepository } from "../repositories/IProdutoRepository";
 
 interface IRequest {
   nome: string;
@@ -8,11 +8,13 @@ interface IRequest {
 }
 
 class ProdutosService {
-  constructor(private produtosRepository: ProdutosRepository) {}
+  //injecao dependencia
+  constructor(private produtosRepository: IProdutoRepository) {}
 
   salvarProduto({ nome, descricao, preco }: IRequest): void {
     const produtoExiste = this.produtosRepository.obterPorNome(nome);
 
+    //validacao
     if (produtoExiste) {
       throw new Error("O produto já existe!");
     }
